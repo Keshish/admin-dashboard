@@ -28,7 +28,10 @@ export class LoginComponent {
 
   login(): void {
     if (this.authService.login(this.username, this.password)) {
-      this.router.navigate(['/dashboard']);
+        // Assuming authentication is successful
+        localStorage.setItem('userToken', 'your-auth-token'); // Set the token
+        this.router.navigate(['/dashboard']); // Redirect to the dashboard
+        this.router.navigate(['/dashboard']);
     } else {
       alert('Invalid credentials');
     }
