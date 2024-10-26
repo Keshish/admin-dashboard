@@ -2,22 +2,27 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { WelcomeComponent } from './components/welcome/welcome.component'; // Import the WelcomeComponent
+import { MainLayoutComponent } from './components/main-layout/main-layout.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] }, // Guard applied to login route
+  { path: '', component: WelcomeComponent }, // Public welcome page
+
+  // Authenticated routes wrapped with MainLayoutComponent
   {
     path: '',
-    component: WelcomeComponent, // Display WelcomeComponent at the root route
-  },
-  {
-    path: '',
+    component: MainLayoutComponent,
+    canActivate: [AuthGuard], // Guard applied to authenticated routes
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      // Add other child routes under MainLayoutComponent as needed
+      // Additional authenticated routes
     ],
   },
-  { path: '**', redirectTo: '', pathMatch: 'full' }, // Redirect unknown paths to the root
+
+  // Redirect unknown paths to the welcome page
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

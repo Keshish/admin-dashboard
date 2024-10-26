@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {MatNavList} from "@angular/material/list";
+import {MatListItem, MatNavList} from "@angular/material/list";
 import {MatIcon} from "@angular/material/icon";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +10,10 @@ import {MatIcon} from "@angular/material/icon";
   styleUrls: ['./sidebar.component.scss'],
   imports: [
     MatNavList,
-    MatIcon
+    MatIcon,
+    MatListItem,
+    RouterLink,
+    RouterLinkActive
   ]
 })
 export class SidebarComponent {}
