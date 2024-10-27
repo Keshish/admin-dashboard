@@ -8,7 +8,9 @@ import {
   MatCardTitle
 } from "@angular/material/card";
 import {MatButton} from "@angular/material/button";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {NgIf} from "@angular/common";
+import {AuthService} from "../../services/auth-service/auth.service";
 
 @Component({
   selector: 'app-welcome',
@@ -21,11 +23,21 @@ import {RouterLink} from "@angular/router";
     MatCardTitle,
     MatCardSubtitle,
     MatButton,
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.scss'
 })
 export class WelcomeComponent {
+  constructor(private authService: AuthService) {
+  }
+
+  isLoggedIn: boolean = false;
+
+  ngOnInit(): void {
+    this.isLoggedIn= this.authService.isAuthenticated();
+  }
+
 
 }

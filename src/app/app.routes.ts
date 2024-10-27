@@ -14,10 +14,10 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    canActivate: [AuthGuard], // Guard applied to authenticated routes
+    canActivate: [AuthGuard], // Guard applied to MainLayoutComponent
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      // Additional authenticated routes
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }, // Guard applied to /dashboard specifically
+      // Add additional authenticated routes with canActivate if needed
     ],
   },
 
