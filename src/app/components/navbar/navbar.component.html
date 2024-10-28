@@ -1,11 +1,12 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="toggleSidenav()">
+  <button mat-icon-button (click)="toggle.emit()">
     <mat-icon>menu</mat-icon>
   </button>
   <span>Admin Dashboard</span>
   <span class="spacer"></span>
 
-  <button mat-icon-button (click)="logout()">
+  <!-- Conditional Logout Button -->
+  <button mat-icon-button *ngIf="authService.isLoggedIn()" (click)="logout()">
     <mat-icon>logout</mat-icon>
   </button>
 

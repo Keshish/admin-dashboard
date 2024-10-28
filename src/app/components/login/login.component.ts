@@ -26,12 +26,11 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  login(): void {
+  login() {
     if (this.authService.login(this.username, this.password)) {
         // Assuming authentication is successful
-        localStorage.setItem('userToken', 'your-auth-token'); // Set the token
+        localStorage.setItem('authToken', 'your-auth-token'); // Set the token
         this.router.navigate(['/dashboard']); // Redirect to the dashboard
-        this.router.navigate(['/dashboard']);
     } else {
       alert('Invalid credentials');
     }

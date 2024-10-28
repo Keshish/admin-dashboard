@@ -1,0 +1,68 @@
+import { Injectable, Inject, Optional } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Configuration } from '{{configurationFile}}';
+{{#models}}import { {{classname}} } from '{{modelPackage}}{{classname}}';{{/models}}
+
+@Injectable({
+  providedIn: 'root',
+  })
+export class {{classname}}Service {
+
+protected basePath = '{{basePath}}';
+public defaultHeaders = new HttpHeaders();
+public configuration = new Configuration();
+
+constructor(protected httpClient: HttpClient, @Optional() @Inject('basePath') basePath: string, @Optional() configuration: Configuration) {
+if (basePath) {
+this.basePath = basePath;
+}
+if (configuration) {
+this.configuration = configuration;
+}
+}
+
+private addHeaders(options: { headers?: HttpHeaders }): HttpHeaders {
+let headers = this.defaultHeaders;
+if (options && options.headers) {
+headers = options.headers;
+}
+return headers;
+}
+
+{{#operations}}
+  /**
+  * {{summary}}
+  * {{description}}
+  * @param {{#allParams}}{{paramName}}: {{dataType}} - {{description}}{{/allParams}}
+  * @return Observable<{{{returnType}}}>
+  */
+  public {{operationIdCamelCase}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{dataType}}{{#hasRequiredParams}}, {{/hasRequiredParams}}{{/allParams}}): Observable<{{{returnType}}}> {
+  const url = `${this.basePath}/{{{path}}}`;
+  let queryParams = new HttpParams();
+  {{#queryParams}}
+    if ({{paramName}} !== undefined && {{paramName}} !== null) {
+    queryParams = queryParams.set('{{baseName}}', {{paramName}}.toString());
+    }
+  {{/queryParams}}
+
+  let headers = this.addHeaders({ headers: new HttpHeaders() });
+  {{#authMethods}}
+    // TODO: Handle any required authentication here
+  {{/authMethods}}
+
+  return this.httpClient.request<{{{returnType}}}>('{{httpMethod}}', url, {
+  params: queryParams,
+  headers: headers,
+  responseType: '{{responseType}}',
+  }).pipe(
+  catchError((error: any) => {
+  console.error(error);
+  throw error;
+  })
+  );
+    }
+{{/operations}}
+
+  }

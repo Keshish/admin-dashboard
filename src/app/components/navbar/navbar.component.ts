@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth-service/auth.service";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-navbar',
@@ -10,22 +12,22 @@ import {Router} from "@angular/router";
   imports: [
     MatToolbar,
     MatIcon,
-    MatIconButton
+    MatIconButton,
+    NgIf
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
 
-  constructor(private router: Router) {
+  constructor(protected authService:AuthService, private router: Router) {
   }
-  toggleSidenav() {
+  @Output() toggle = new EventEmitter<void>();
 
-  }
 
     logout() {
       // Clear session data if needed
-      localStorage.removeItem('userToken');
+      localStorage.removeItem('authToken');
 
       // Redirect to login page
       this.router.navigate(['/login']);

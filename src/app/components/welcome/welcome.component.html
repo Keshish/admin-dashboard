@@ -15,8 +15,10 @@
       </p>
     </mat-card-content>
 
-    <mat-card>
-      <button mat-raised-button color="primary" routerLink="/login">Login</button>
-    </mat-card>
+    <!-- Conditional Button -->
+    <mat-card-actions>
+      <button mat-raised-button color="primary" *ngIf="!isLoggedIn" routerLink="/login">Login</button>
+      <button mat-raised-button color="accent" *ngIf="isLoggedIn" routerLink="/dashboard">Go to Dashboard</button>
+    </mat-card-actions>
   </mat-card>
 </div>

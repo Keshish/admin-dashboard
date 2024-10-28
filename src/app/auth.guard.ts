@@ -8,7 +8,7 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const isAuthenticated = !!localStorage.getItem('userToken'); // Check if the user is authenticated
+    const isAuthenticated = !!localStorage.getItem('authToken'); // Check if the user is authenticated
 
     // If user is authenticated and trying to access the login page, redirect to dashboard
     if (isAuthenticated && state.url === '/login') {

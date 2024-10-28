@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   MatCard,
   MatCardActions,
@@ -29,15 +29,13 @@ import {AuthService} from "../../services/auth-service/auth.service";
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.scss'
 })
-export class WelcomeComponent {
+export class WelcomeComponent  implements OnInit {
   constructor(private authService: AuthService) {
   }
-
-  isLoggedIn: boolean = false;
+  isLoggedIn = false;
 
   ngOnInit(): void {
-    this.isLoggedIn= this.authService.isAuthenticated();
+    this.isLoggedIn = this.authService.isLoggedIn();
   }
-
 
 }

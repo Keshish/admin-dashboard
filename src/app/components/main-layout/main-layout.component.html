@@ -6,17 +6,14 @@
 
   <!-- Main Content Area -->
   <mat-sidenav-content>
-    <!-- Toolbar with Toggle Button -->
-    <mat-toolbar color="primary">
-      <button mat-icon-button (click)="toggleSidenav()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span style="color: black">Admin Dashboard</span>
-    </mat-toolbar>
+
+    <!-- Navbar (included above the main content) -->
+    <app-navbar (toggle)="sidenav.toggle()"></app-navbar>
 
     <!-- Main Content -->
     <div class="content">
       <router-outlet></router-outlet>
     </div>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
