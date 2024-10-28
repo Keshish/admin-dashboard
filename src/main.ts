@@ -2,10 +2,12 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {provideRouter} from "@angular/router";
-import {routes} from '../src/app/app.routes'
+import {routes} from './app/app.routes'
+import {provideHttpClient} from "@angular/common/http";
+
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideAnimations(), // Use this to add animations without BrowserModule
-  ]
+    provideAnimations(),
+  provideHttpClient()]
 })  .catch((err) => console.error(err));

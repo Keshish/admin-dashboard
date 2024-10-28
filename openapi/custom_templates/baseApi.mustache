@@ -1,0 +1,39 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Configuration } from './configuration';
+
+/**
+* Base class for API services
+*/
+export class BaseApi {
+protected basePath: string;
+protected defaultHeaders: HttpHeaders = new HttpHeaders();
+protected configuration: Configuration;
+
+constructor(
+protected httpClient: HttpClient,
+configuration?: Configuration,
+basePath: string = ''
+) {
+this.configuration = configuration || new Configuration();
+this.basePath = this.configuration.basePath || basePath || '';
+}
+
+/**
+* Adds authorization headers, if an access token is available.
+*/
+protected addAuthorizationHeader(headers: HttpHeaders = new HttpHeaders()): HttpHeaders {
+const accessToken = this.configuration.accessToken;
+if (accessToken) {
+headers = headers.set('Authorization', `Bearer ${accessToken}`);
+}
+return headers;
+}
+
+/**
+* Sets up common request parameters, including URL and headers.
+*/
+protected getRequestOptions(params: HttpParams = new HttpParams(), headers: HttpHeaders = new HttpHeaders()): { params: HttpParams; headers: HttpHeaders } {
+headers = this.addAuthorizationHeader(headers);
+return { params, headers };
+}
+  }

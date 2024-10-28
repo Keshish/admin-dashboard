@@ -1,19 +1,19 @@
 import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
 import { Configuration } from './configuration';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, provideHttpClient} from '@angular/common/http';
 
 
 @NgModule({
   imports:      [],
   declarations: [],
   exports:      [],
-  providers: []
+  providers: [  provideHttpClient()]
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<ApiModule> {
         return {
             ngModule: ApiModule,
-            providers: [ { provide: Configuration, useFactory: configurationFactory } ]
+            providers: [ { provide: Configuration, useFactory: configurationFactory },   provideHttpClient()]
         };
     }
 

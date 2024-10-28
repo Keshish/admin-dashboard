@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "api:generate:win": "docker run  -v ${PWD}:/local openapitools/openapi-generator-cli generate -i /local/openapi/apis/STA.WebAPI.v1.json -g typescript-angular -o /local/src/@api/STA",
+    "api:generate:win": "docker run -v ${PWD}:/local openapitools/openapi-generator-cli generate -i /local/openapi/apis/STA.WebAPI.v1.json -g typescript-angular -o /local/src/@api/STA",
     "api:generate-template:win": "docker run  -v ${PWD}:/local openapitools/openapi-generator-cli generate -i /local/openapi/apis/STA.WebAPI.v1.json -t /local/openapi/custom_templates -g typescript-angular -o /local/src/@api/STA"
   },
   "private": true,
