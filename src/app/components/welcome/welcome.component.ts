@@ -10,7 +10,7 @@ import {
 import {MatButton} from "@angular/material/button";
 import {Router, RouterLink} from "@angular/router";
 import {NgIf} from "@angular/common";
-import {AuthService} from "../../services/auth-service/auth.service";
+import {LoginService} from "../../services/login-service/login.service";
 
 @Component({
   selector: 'app-welcome',
@@ -30,7 +30,7 @@ import {AuthService} from "../../services/auth-service/auth.service";
   styleUrl: './welcome.component.scss'
 })
 export class WelcomeComponent  implements OnInit {
-  constructor(private authService: AuthService) {
+  constructor(private authService: LoginService) {
   }
   isLoggedIn = false;
 

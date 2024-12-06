@@ -1,6 +1,6 @@
 // import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 // import { Injectable } from '@angular/core';
-// import { AuthService } from '../services/auth-service/auth.service'; // Your auth service
+// import { LoginService } from '../services/login-service/auth.service'; // Your auth service
 // import { Configuration, BaseAPI } from '../../@api/STA'; // Adjust imports from generated API
 //
 // @Injectable({
@@ -10,7 +10,7 @@
 //   private readonly apiInstance: ApiType;
 //
 //   constructor(
-//     private authService: AuthService,
+//     private authService: LoginService,
 //     private http: HttpClient,
 //     ApiTypeClass: new (configuration: Configuration, http: HttpClient) => ApiType
 //   ) {

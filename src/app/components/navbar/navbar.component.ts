@@ -3,7 +3,7 @@ import {MatToolbar} from "@angular/material/toolbar";
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
 import {Router} from "@angular/router";
-import {AuthService} from "../../services/auth-service/auth.service";
+import {LoginService} from "../../services/login-service/login.service";
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -20,7 +20,7 @@ import {NgIf} from "@angular/common";
 })
 export class NavbarComponent {
 
-  constructor(protected authService:AuthService, private router: Router) {
+  constructor(protected authService:LoginService, private router: Router) {
   }
   @Output() toggle = new EventEmitter<void>();
 

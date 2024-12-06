@@ -106,13 +106,13 @@ import { ApiModule, Configuration } from '';
     providers: [
       {
         provide: Configuration,
-        useFactory: (authService: AuthService) => new Configuration(
+        useFactory: (authService: LoginService) => new Configuration(
           {
             basePath: environment.apiUrl,
             accessToken: authService.getAccessToken.bind(authService)
           }
         ),
-        deps: [AuthService],
+        deps: [LoginService],
         multi: false
       }
     ],
