@@ -11,6 +11,7 @@ import {MatButton} from "@angular/material/button";
 import {Router, RouterLink} from "@angular/router";
 import {NgIf} from "@angular/common";
 import {LoginService} from "../../services/login-service/login.service";
+import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-welcome',
@@ -24,7 +25,8 @@ import {LoginService} from "../../services/login-service/login.service";
     MatCardSubtitle,
     MatButton,
     RouterLink,
-    NgIf
+    NgIf,
+    TranslatePipe
   ],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.scss'

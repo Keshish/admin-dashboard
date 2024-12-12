@@ -1,27 +1,66 @@
-# AdminDashboard
+# Admin Dashboard Frontend (Angular)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.
+This repository contains the frontend (Angular) portion of an Admin Dashboard application. It relies on a separate .NET 8 ASP.NET Core Web API backend to function properly.
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Node.js** (LTS recommended): [Download Here](https://nodejs.org/)
+- **Angular CLI**:  
+  Install globally with:
+  ```bash
+  npm install -g @angular/cli
+  ```
+- **.NET 8 SDK**: [Download Here](https://dotnet.microsoft.com/en-us/download)
+- **Git**: [Download Here](https://git-scm.com/downloads)
 
-## Code scaffolding
+## Setup Instructions
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. **Clone the Backend Repo**:  
+   First, you need to clone the backend application (ASP.NET Core Web API):
+   ```bash
+   git clone https://github.com/Keshish/STA.API backend
+   ```
 
-## Build
+2. **Run the Backend**:
+   Navigate into the backend directory and run:
+   ```bash
+   cd backend
+   dotnet restore
+   dotnet build
+   dotnet run
+   ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   By default, the backend should run at `https://localhost:7038` (or `http://localhost:5000`), but this may vary based on your configuration. Ensure the backend is running before starting the frontend.
 
-## Running unit tests
+   **Default Credentials for Backend**:
+  - Username: `admin`
+  - Password: `Passord1!`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. **Clone the Frontend Repo**:
+   In a separate directory (not inside the backend folder), clone this frontend repo:
+   ```bash
+   git clone https://github.com/Keshish/admin-dashboard admin-dashboard
+   ```
+4. **Install Frontend Dependencies**:
+   Navigate into the frontend directory:
+   ```bash
+   cd admin-dashboard
+   npm install
+   ```
 
-## Running end-to-end tests
+5. **Adjust Configuration if Needed**:
+   The frontend may be configured to call the backend via a proxy (`proxy.config.json`) or environment files. Ensure that the backend URL matches the actual running backend URL. If needed, edit the `src/environments/environment.ts` or `proxy.config.json` to reflect the correct backend URL.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+6. **Run the Frontend**:
+   Start the development server:
+   ```bash
+   ng serve
+   ```
 
-## Further help
+   By default, the application runs on `http://localhost:4200`. Open your browser and navigate there to access the admin dashboard.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+7. **Logging In**:
+   Use the default credentials (if the frontend requires login) as provided by the backend:
+  - Username: `admin`
+  - Password: `Passord1!`
+
