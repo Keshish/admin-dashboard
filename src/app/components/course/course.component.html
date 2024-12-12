@@ -1,0 +1,64 @@
+<div class="container">
+  <h1>Course Management</h1>
+
+  <form [formGroup]="courseForm" (ngSubmit)="submitForm()" class="course-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Course Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter course title">
+      <mat-error *ngIf="courseForm.get('title')?.invalid && courseForm.get('title')?.touched">
+        Course Title is required (minimum 3 characters)
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="courseForm.invalid">
+        {{ isEditMode ? 'Update Course' : 'Add Course' }}
+      </button>
+      <button
+        *ngIf="isEditMode"
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="resetForm()">
+        Cancel
+      </button>
+    </div>
+  </form>
+
+  <table mat-table [dataSource]="courses" class="mat-elevation-z8 mt-4">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let course">{{ course.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Course Title</th>
+      <td mat-cell *matCellDef="let course">{{ course.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let course">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="editCourse(course)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteCourse(course.id!)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
